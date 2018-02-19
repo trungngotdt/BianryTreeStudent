@@ -29,10 +29,12 @@ namespace TestBSTreeStudent
             Parallel.ForEach(list, (item) =>
             {
                 item.Id = item.Id - random.Next(-size, size) / 2 + random.Next(-size, size) + random.Next(-size, size) * 2;
-                item.AvgMark = random.Next(0, 10) / 1.0f;
+                float mark= (random.Next(0, 10) / 1.0f)+10.0f/(random.Next(0,99)*1.0f);
+                item.AvgMark = float.Parse(String.Format("{0:0.00}", mark));
             });
             return list;
         }
+
         [SetUp]
         public void SetUp()
         {
@@ -46,6 +48,7 @@ namespace TestBSTreeStudent
         {
             tree.AddRange(listStu.ToArray());
             tree.Insert(null);
+            Assert.IsTrue(tree.ToList().Count <= listStu.Count);
             Assert.NotNull(tree.root);
         }
 
@@ -99,17 +102,29 @@ namespace TestBSTreeStudent
             tree.AddRange(listStu.ToArray());
             var prec = tree.Predecessor();
             var succ = tree.Successor();
-            Assert.AreEqual(tree.GetMin(tree.root.Right).Data, (succ as Node<Student>).Data);
-            Assert.AreEqual(tree.GetMax(tree.root.Left).Data, (prec as Node< Student>).Data);
+            var min = tree.GetMin(tree.root.Right).Data;
+            var max = tree.GetMax(tree.root.Left).Data;
+            Assert.AreEqual(min, (succ as Node<Student>).Data);
+            Assert.AreEqual(max, (prec as Node< Student>).Data);
         }
 
         [Test]
         public void RemoveTest()
         {
             tree.AddRange(listStu.ToArray());
-            var check= tree.Remove(listStu[10]);
-            Assert.IsTrue(check);
-            Assert.IsFalse(tree.Contains(listStu[10]));
+            Assert.IsTrue(tree.ToList().Count <= listStu.Count);
+            Student stu = null;
+            var list = new List<Student>(tree.ToList());
+            foreach (var item in list)
+            {
+                
+                    var check = tree.Remove(item);
+                    Assert.IsTrue(check);
+                    var checkContains = tree.Contains(item);
+                    Assert.IsFalse(checkContains);
+            }
+            
+
         }
 
         [Test]

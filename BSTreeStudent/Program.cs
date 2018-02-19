@@ -5,36 +5,48 @@ using System.Text;
 using System.Threading.Tasks;
 using BSTreeGenericClass;
 using System.Text.RegularExpressions;
+using FizzWare.NBuilder;
 
 namespace BSTreeStudent
 {
     class Program
     {
-        class Stu:IComparable
+        
+        private static int size = 20;
+        public static  List<T> GetRandomData<T>(int size)
         {
-            private int id;
-            private int mark;
+            var list = Builder<T>.CreateListOfSize(size).Build().ToList();
 
-            public int Id { get => id; set => id = value; }
-            public int Mark { get => mark; set => mark = value; }
+            return list;
+        }
 
-            public int CompareTo(object obj)
+        public static List<Student> GetData(int size)
+        {
+            Random random = new Random();
+            var list = GetRandomData<Student>(size);
+            Parallel.ForEach(list, (item) =>
             {
-                try
-                {
-                    var node = obj as Stu;
-                    return this.Id.CompareTo(node.Id);
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-            }
+                item.Id = item.Id - random.Next(-size, size) / 2 + random.Next(-size, size) + random.Next(-size, size) * 2;
+                float mark = (random.Next(0, 10) / 1.0f) + 10.0f / (random.Next(0, 99) * 1.0f);
+                item.AvgMark = float.Parse(String.Format("{0:0.00}", mark));
+            });
+            return list;
         }
         static void Main(string[] args)
         {
             //TraversalMenu();
+            BSTTree<Student> tree = new BSTTree<Student>();
+            Run run = new Run(tree);
+
+            var listStu = GetData(size);
+            tree.AddRange(listStu.ToArray());
+            run.MainPanel();
+            Console.ReadLine();
+
+        }
+
+        public void MainMenu()
+        {
             var stu1 = new Student(51503000, "A", DateTime.Now, 0, 0);
             //var stu1 = new Student(51503000, "A", DateTime.Now, 0, 0);
             int j = 0;
@@ -44,55 +56,13 @@ namespace BSTreeStudent
             Match match = regex.Match(a);
             //var d = DateTime.ParseExact(a, "dd-MM-yyyy",null);
             Console.WriteLine("end");
-            Console.ReadLine();
-            
-        }
 
-        public void MainMenu()
-        {
-            
         }
 
         public static void TraversalMenu()
         {
             Console.WriteLine("1/ LNR \n2/ LRN\n3/ NLR \n4/ RNL \n5/ NRL \n6/ RLN \n7/Exit \nEnter choice:");
         }
-
-        static List<Stu> GetList()
-        {
-            List<Stu> list = new List<Stu>();
-            Parallel.For(0, 500000, i => { });
-            Parallel.For(-5000, 0, j => {  list.Add(new Stu() { Id = j, Mark = j });});
-            return list;
-
-        }
-
-        static async void ListkAsync()
-        { BSTTree<Stu> tree = new BSTTree<Stu>();
-            Stu stua = null;
-            Console.WriteLine("B");
-            List<int> list = new List<int>();
-            Console.WriteLine("C");
-            await Task.WhenAll(new Task[] { listAsync(list) });
-            //list = await listAsync();
-            Console.WriteLine(list.Count);
-            Console.WriteLine("D");
-            Console.WriteLine("A");
-            Stu stu = new Stu();
-            Console.ReadLine();
-        }
-
-        static async Task<List<int>> listAsync(List<int> list)
-        {
-            
-            Task task = Task.Factory.StartNew(()=>{
-                for (int i = 0; i < 50; i++)
-                {
-                    list.Add(i);
-                }
-            });
-            await Task.WhenAll(new Task[] { task });
-            return list;
-        }
+        
     }
 }

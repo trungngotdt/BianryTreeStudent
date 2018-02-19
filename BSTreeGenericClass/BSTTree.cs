@@ -456,6 +456,10 @@ namespace BSTreeGenericClass
 
         public bool Remove(T data)
         {
+            if (data==null)
+            {
+                return false;
+            }
             return Remove(new Node<T>(data));
         }
 
@@ -496,7 +500,7 @@ namespace BSTreeGenericClass
                         if (parent.Item1 == null)
                         {
                             root = null;
-                            return false;
+                            return true;
                         }
                         parent.Item1.Left = parent.Item2 == -1 ? null : parent.Item1.Left;
                         parent.Item1.Right = parent.Item2 == 1 ? null : parent.Item1.Right;

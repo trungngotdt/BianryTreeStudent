@@ -14,3 +14,4 @@ C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.Pdb.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.Mdb.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.Rocks.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\FizzWare.NBuilder.dll
