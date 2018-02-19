@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTreeStudent", "BSTreeStudent\BSTreeStudent.csproj", "{70B99D95-B619-4B77-81D9-A0C03E35306A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTreeGenericClass", "BSTreeGenericClass\BSTreeGenericClass.csproj", "{67B881DC-227B-4A8D-B2FD-8058989D1676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBSTreeStudent", "TestBSTreeStudent\TestBSTreeStudent.csproj", "{263E81E8-AC7B-46B8-825A-05403F1DFD66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70B99D95-B619-4B77-81D9-A0C03E35306A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B99D95-B619-4B77-81D9-A0C03E35306A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B99D95-B619-4B77-81D9-A0C03E35306A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B99D95-B619-4B77-81D9-A0C03E35306A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B881DC-227B-4A8D-B2FD-8058989D1676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B881DC-227B-4A8D-B2FD-8058989D1676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B881DC-227B-4A8D-B2FD-8058989D1676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B881DC-227B-4A8D-B2FD-8058989D1676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5B2F8BF-8555-4045-B19E-F130FE73CA7F}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ngotrung.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BSTreeStudent\\BSTreeStudent.csproj
+		SccProjectName1 = BSTreeStudent
+		SccLocalPath1 = BSTreeStudent
+		SccProjectUniqueName2 = BSTreeGenericClass\\BSTreeGenericClass.csproj
+		SccProjectName2 = BSTreeGenericClass
+		SccLocalPath2 = BSTreeGenericClass
+		SccProjectUniqueName3 = TestBSTreeStudent\\TestBSTreeStudent.csproj
+		SccProjectName3 = TestBSTreeStudent
+		SccLocalPath3 = TestBSTreeStudent
+	EndGlobalSection
+EndGlobal
