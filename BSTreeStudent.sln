@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTreeStudent", "BSTreeStudent\BSTreeStudent.csproj", "{70B99D95-B619-4B77-81D9-A0C03E35306A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTreeGenericClass", "BSTreeGenericClass\BSTreeGenericClass.csproj", "{67B881DC-227B-4A8D-B2FD-8058989D1676}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBSTreeStudent", "TestBSTreeStudent\TestBSTreeStudent.csproj", "{263E81E8-AC7B-46B8-825A-05403F1DFD66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVLGenericClass", "AVLGenericClass\AVLGenericClass.csproj", "{BB13473C-B0DF-4D75-ACC4-E01482B9B873}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{263E81E8-AC7B-46B8-825A-05403F1DFD66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB13473C-B0DF-4D75-ACC4-E01482B9B873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB13473C-B0DF-4D75-ACC4-E01482B9B873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB13473C-B0DF-4D75-ACC4-E01482B9B873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB13473C-B0DF-4D75-ACC4-E01482B9B873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,7 +41,7 @@ Global
 		SolutionGuid = {C5B2F8BF-8555-4045-B19E-F130FE73CA7F}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://ngotrung.visualstudio.com/
 		SccLocalPath0 = .
@@ -48,5 +54,8 @@ Global
 		SccProjectUniqueName3 = TestBSTreeStudent\\TestBSTreeStudent.csproj
 		SccProjectName3 = TestBSTreeStudent
 		SccLocalPath3 = TestBSTreeStudent
+		SccProjectUniqueName4 = AVLGenericClass\\AVLGenericClass.csproj
+		SccProjectName4 = AVLGenericClass
+		SccLocalPath4 = AVLGenericClass
 	EndGlobalSection
 EndGlobal

@@ -1,15 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BSTreeGenericClass;
+using FizzWare.NBuilder;
+using LinqToExcel;
 
 namespace BSTreeStudent
 {
     public class Run
     {
+
+        private List<T> GetRandomData<T>(int size)
+        {
+            var list = Builder<T>.CreateListOfSize(size).Build().ToList();
+
+            return list;
+        }
+
+        private List<Student> GetData(int size)
+        {
+            Random random = new Random();
+            var list = GetRandomData<Student>(size);
+            Parallel.ForEach(list, (item) =>
+            {
+                item.Id = item.Id - random.Next(-size, size) / 2 + random.Next(-size, size) + random.Next(-size, size) * 2;
+                float mark = (random.Next(0, 10) / 1.0f) + 10.0f / (random.Next(0, 99) * 1.0f);
+                item.AvgMark = float.Parse(String.Format("{0:0.00}", mark));
+            });
+            return list;
+        }
         public Run()
         {
             tree = new BSTTree<Student>();
@@ -23,13 +46,13 @@ namespace BSTreeStudent
         private void MainMenu()
         {
             Console.WriteLine("1/ Traversal \n2/ Search \n3/ Insert \n4/ Remove \n5/ Get Predecessor and Get Successorr \n6/ Update " +
-                "\n7/ Exit \n Enter your choice :");
+                "\n7/ Generate data \n8/ Exit \n Enter your choice :");
         }
 
         public void MainPanel()
         {
             int choice = 0;
-            while (choice != 7)
+            while (choice != 8)
             {
                 MainMenu();
                 string input = Console.ReadLine();
@@ -55,7 +78,13 @@ namespace BSTreeStudent
                         case 6:
                             UpdatePanel();
                             break;
+                        case 7:
+                            GenerateData();
+                            break;
+                        case 8:
+                            break;
                         default:
+                            Console.WriteLine("Please try again !");
                             break;
                     }
                 }
@@ -65,7 +94,33 @@ namespace BSTreeStudent
                     continue;
                 }
             }
+
         }
+
+        #region Generate Data
+        private void GenerateData()
+        {
+            Console.WriteLine("Enter size of data :");
+            string input = Console.ReadLine();
+            int size = 0;
+            if (int.TryParse(input, out size))
+            {
+                Console.WriteLine("Please try again !");
+                return;
+            }
+            try
+            {
+                var listStu = GetData(size);
+                tree.AddRange(listStu.ToArray());
+                Console.WriteLine("Everything OK!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+        #endregion
 
         #region Traversal
         private void TraversalPanel()
@@ -96,6 +151,8 @@ namespace BSTreeStudent
                             break;
                         case 6:
                             tree.RLN();
+                            break;
+                        case 7:
                             break;
                         default:
                             Console.WriteLine("Please try again !");
@@ -157,6 +214,8 @@ namespace BSTreeStudent
                             break;
                         case 7:
                             Console.WriteLine(tree.GetMin().Data.ToString());
+                            break;
+                        case 8:
                             break;
                         default:
                             Console.WriteLine("Please try again !");
@@ -221,7 +280,7 @@ namespace BSTreeStudent
         #region Insert
         private void InsertMenu()
         {
-            Console.WriteLine("1/ Insert a student\n2/ ??? \n3/ Exit \n Enter your choice :");
+            Console.WriteLine("1/ Insert a student\n2/ Insert a list \n3/ Exit \n Enter your choice :");
         }
 
         private void InsertPanel()
@@ -240,6 +299,9 @@ namespace BSTreeStudent
                             InsertAElement();
                             break;
                         case 2:
+                            InsertAListStudent();
+                            break;
+                        case 3:
                             break;
                         default:
                             Console.WriteLine("Please try again !");
@@ -251,6 +313,23 @@ namespace BSTreeStudent
                     Console.WriteLine("Please try again !");
                     continue;
                 }
+            }
+        }
+
+        private void InsertAListStudent()
+        {
+            var listStudent = GetDataFromExcel();
+            try
+            {
+                foreach (var item in listStudent)
+                {
+                    tree.Insert(new Node<Student>(item));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -300,7 +379,7 @@ namespace BSTreeStudent
 
         private void RemoveMenu()
         {
-            Console.WriteLine("1/ Remove a student\n2/ ???\n3/ Exit \n Enter your choice :");
+            Console.WriteLine("1/ Remove a student\n2/ Remove a list\n3/ Exit \n Enter your choice :");
         }
 
         private void RemovePanel()
@@ -319,6 +398,9 @@ namespace BSTreeStudent
                             RemoveAElement();
                             break;
                         case 2:
+                            RemoveAList();
+                            break;
+                        case 3:
                             break;
                         default:
                             Console.WriteLine("Please try again !");
@@ -371,7 +453,34 @@ namespace BSTreeStudent
                 return;
             }
             var student = new Student(id, name, date, avgMark, accumulationCredit);
-            tree.Remove(new Node<Student>(student));
+            var result = tree.Remove(new Node<Student>(student));
+            if (!result)
+            {
+                string mess = tree.FindNode(student) != null ? "Can't remove" : $"Can't find {student.ToString()}";
+                Console.WriteLine(mess);
+            }
+            else
+            {
+                Console.WriteLine("Complete");
+            }
+        }
+
+        public void RemoveAList()
+        {
+            var listStudent = GetDataFromExcel();
+            foreach (var student in listStudent)
+            {
+                var result = tree.Remove(new Node<Student>(student));
+                if (!result)
+                {
+                    string mess = tree.FindNode(student) != null ? "Can't remove" : $"Can't find {student.ToString()}";
+                    Console.WriteLine(mess);
+                }
+                else
+                {
+                    Console.WriteLine("Complete");
+                }
+            }
         }
 
         #endregion
@@ -400,13 +509,16 @@ namespace BSTreeStudent
                         case 2:
                             Console.WriteLine((tree.Successor() as Node<Student>).Data.ToString());
                             break;
+                        case 3:
+                            break;
                         default:
+                            Console.WriteLine("Please try again !");
                             break;
                     }
                 }
                 else
                 {
-
+                    Console.WriteLine("Please try again !");
                 }
             }
         }
@@ -424,9 +536,9 @@ namespace BSTreeStudent
                 string inp = null;
                 UpdateMenu();
                 string input = Console.ReadLine();
-                while (node==null)
+                while (node == null)
                 {
-                     node=FindStudent();
+                    node = FindStudent();
                 }
                 //Console.WriteLine("Old data of student");
                 //Console.WriteLine(node.Data.ToString());
@@ -480,14 +592,14 @@ namespace BSTreeStudent
 
         }
 
-        private void UpdateWith(string propertyName,string data,Node<Student> node)
+        private void UpdateWith(string propertyName, string data, Node<Student> node)
         {
             object value;
             if (propertyName.Equals("Name"))
             {
                 value = data;
             }
-            else if(propertyName.Equals("AvgMark"))
+            else if (propertyName.Equals("AvgMark"))
             {
                 if (!float.TryParse(data, out float avg))
                 {
@@ -496,18 +608,18 @@ namespace BSTreeStudent
                 }
                 value = avg;
             }
-            else if(propertyName.Equals("AccumulationCredit"))
+            else if (propertyName.Equals("AccumulationCredit"))
             {
-                if (!int.TryParse(data,out int credit))
+                if (!int.TryParse(data, out int credit))
                 {
                     Console.WriteLine("Please try again !");
                     return;
                 }
                 value = credit;
             }
-            else if(propertyName.Equals("BirthDay"))
+            else if (propertyName.Equals("BirthDay"))
             {
-                if (!DateTime.TryParse(data,out DateTime date))
+                if (!DateTime.TryParse(data, out DateTime date))
                 {
                     Console.WriteLine("Please try again !");
                     return;
@@ -520,9 +632,52 @@ namespace BSTreeStudent
                 return;
             }
             var propInfo = node.Data.GetType().GetProperty(propertyName);
-            propInfo.SetValue(node.Data,Convert.ChangeType( value,propInfo.PropertyType),null);//.GetValue(node.Data, null)="";
+            propInfo.SetValue(node.Data, Convert.ChangeType(value, propInfo.PropertyType), null);//.GetValue(node.Data, null)="";
         }
         #endregion
 
+        #region GetDataFromExcel
+        private List<Student> GetDataFromExcel()
+        {
+            List<Student> list = new List<Student>();
+            Console.WriteLine("Path to excel file :");
+            string pathToExcelFile = Console.ReadLine();
+            string ext = Path.GetExtension(pathToExcelFile);
+            if (ext.ToLower().Equals(".xls") || ext.ToLower().Equals(".xlsx"))
+            {
+                Console.WriteLine("Sheet Name :");
+                string sheetName = Console.ReadLine();
+                var excelFile = new ExcelQueryFactory(pathToExcelFile);
+                var dataExcel = from a in excelFile.Worksheet(sheetName) select a;
+                foreach (var a in dataExcel)
+                {
+                    try
+                    {
+                        string info = $"ID:{a[0].Value} Name: {a[1].Value}; AvgMark: {a[2].Value}; AccumulationCredit: {a[3].Value}; BirthDay{a[4].Value}";
+                        Console.WriteLine(info);
+                        var ID = a[0].Cast<int>();
+                        var Name = a[1].Value.ToString();
+                        var AvgMark = a[2].Cast<float>();
+                        var AccumulationCredit = a[3].Cast<int>();
+                        var BirthDay = a[4].Cast<DateTime>();
+                        Student student = new Student(ID, Name, BirthDay, AvgMark, AccumulationCredit);
+                        //tree.Insert(new Node<Student>(student));
+                        list.Add(student);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Something wrong with data !Please try again !");
+                    }
+                }
+                return list;
+            }
+            else
+            {
+                Console.WriteLine("This isn't a excel file!");
+                return null;
+            }
+
+        }
+        #endregion
     }
 }

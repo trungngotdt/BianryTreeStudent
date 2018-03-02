@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinqToExcel.Attributes;
 
 namespace BSTreeStudent
 {
@@ -13,7 +14,7 @@ namespace BSTreeStudent
         private float avgMark;
         private int accumulationCredit;
         private DateTime birthDay;
-
+        
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public float AvgMark { get => avgMark; set => avgMark = value; }

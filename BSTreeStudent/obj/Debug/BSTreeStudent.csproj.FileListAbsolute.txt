@@ -15,3 +15,10 @@ C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.Pdb
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.Mdb.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Mono.Cecil.Rocks.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\FizzWare.NBuilder.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\AVLGenericClass.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\LinqToExcel.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Remotion.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\AVLGenericClass.pdb
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\LinqToExcel.xml

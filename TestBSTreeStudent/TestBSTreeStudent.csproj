@@ -52,6 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestAVLTreeClass.cs" />
     <Compile Include="TestBSTreeLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AVLGenericClass\AVLGenericClass.csproj">
+      <Project>{bb13473c-b0df-4d75-acc4-e01482b9b873}</Project>
+      <Name>AVLGenericClass</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BSTreeGenericClass\BSTreeGenericClass.csproj">
       <Project>{67b881dc-227b-4a8d-b2fd-8058989d1676}</Project>
       <Name>BSTreeGenericClass</Name>

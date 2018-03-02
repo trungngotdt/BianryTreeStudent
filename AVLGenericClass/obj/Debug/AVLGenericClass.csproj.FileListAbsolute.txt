@@ -1,0 +1,6 @@
+C:\Users\Admin\source\repos\BSTreeStudent\AVLGenericClass\bin\Debug\AVLGenericClass.dll
+C:\Users\Admin\source\repos\BSTreeStudent\AVLGenericClass\bin\Debug\AVLGenericClass.pdb
+C:\Users\Admin\source\repos\BSTreeStudent\AVLGenericClass\obj\Debug\AVLGenericClass.csprojResolveAssemblyReference.cache
+C:\Users\Admin\source\repos\BSTreeStudent\AVLGenericClass\obj\Debug\AVLGenericClass.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\BSTreeStudent\AVLGenericClass\obj\Debug\AVLGenericClass.dll
+C:\Users\Admin\source\repos\BSTreeStudent\AVLGenericClass\obj\Debug\AVLGenericClass.pdb

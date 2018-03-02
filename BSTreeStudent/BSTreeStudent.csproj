@@ -42,6 +42,18 @@
     <Reference Include="FizzWare.NBuilder, Version=5.0.0.138, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NBuilder.5.0.0\lib\net40\FizzWare.NBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +67,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Run.cs" />
+    <Compile Include="RunAVL.cs" />
+    <Compile Include="RunMain.cs" />
     <Compile Include="Student.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AVLGenericClass\AVLGenericClass.csproj">
+      <Project>{bb13473c-b0df-4d75-acc4-e01482b9b873}</Project>
+      <Name>AVLGenericClass</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BSTreeGenericClass\BSTreeGenericClass.csproj">
       <Project>{67b881dc-227b-4a8d-b2fd-8058989d1676}</Project>
       <Name>BSTreeGenericClass</Name>
