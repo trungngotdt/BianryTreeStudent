@@ -124,8 +124,16 @@ namespace TestBSTreeStudent
                 var checkContains = tree.Contains(new Node<Student>( item));
                 Assert.IsFalse(checkContains);
             }
+        }
 
-
+        [Test]
+        public void RemoveMin()
+        {
+            tree.AddRange(listStu.ToArray());
+            var min = tree.GetMin();
+            var Removemin = tree.RemoveMin();
+            var checkRemove = tree.Contains(new Node<Student>(min));
+            Assert.IsFalse(checkRemove);
         }
 
         [Test]

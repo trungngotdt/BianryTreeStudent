@@ -306,6 +306,7 @@ namespace AVLGenericClass
         #endregion
 
         #region Contains
+        
         /// <summary>
         /// Determines whether an element is in the AVL
         /// </summary>
@@ -440,6 +441,10 @@ namespace AVLGenericClass
         /// <param name="key"></param>
         public void Insert(T key)
         {
+            if (key==null)
+            {
+                return;
+            }
             root = new Node<T>(Insert(root, key));
         }
 
@@ -494,7 +499,7 @@ namespace AVLGenericClass
         /// <returns></returns>
         public Node<T> RemoveMin()
         {
-            return RemoveMin(root);
+            return root= RemoveMin(root);
         }
 
         /// <summary>
@@ -505,7 +510,8 @@ namespace AVLGenericClass
         public Node<T> Remove(T key)
         {
             var x = Remove(root, key);
-            return x;
+
+            return root= x;
         }
 
         /// <summary>
@@ -520,7 +526,7 @@ namespace AVLGenericClass
                 return root;
             }
             var x = Remove(node.Data);
-            return x;
+            return root= x;
         }
 
         /// <summary>
@@ -596,40 +602,23 @@ namespace AVLGenericClass
         private Node<T> RotateLeft(Node<T> x)
         {
             Node<T> y = x.Right;
-            Node<T> T2 = y.Left;
-
-            // Perform rotation
+            x.Right = y.Left;
             y.Left = x;
-            x.Right = T2;
-
-            /*Node<T> y = x.right;
-            x.right = y.left;
-            y.left = x;*/
             //y.size = x.size;
             //x.size = 1 + size(x.left) + size(x.right);
+            x.HeightNode = 1 + Math.Max(Height(x.Left), Height(x.Right));
             y.HeightNode = 1 + Math.Max(Height(y.Left), Height(y.Right));
-            y.HeightNode = 1 + Math.Max(Height(y.Left), Height(y.Right));
-            return y;
+            return y;
         }
 
-        private Node<T> RotateRight(Node<T> y)
+        private Node<T> RotateRight(Node<T> x)
         {
-            Node<T> x = y.Left;
-            Node<T> T2 = x.Right;
-
-            // Perform rotation
-            x.Right = y;
-            y.Left = T2;
-            /*Node<T> y = x.left;
-            x.left = y.right;
-            y.right = x;*/
-            /*y.size = x.size;
-            x.size = 1 + size(x.left) + size(x.right)
-            ;*/
+            Node<T> y = x.Left;
+            x.Left = y.Right;
+            y.Right = x;
             x.HeightNode = 1 + Math.Max(Height(x.Left), Height(x.Right));
-            x.HeightNode = 1 + Math.Max(Height(x.Left), Height(x.Right));
-
-            return x;
+            y.HeightNode = 1 + Math.Max(Height(y.Left), Height(y.Right));
+            return y;
         }
 
         #endregion

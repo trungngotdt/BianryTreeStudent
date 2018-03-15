@@ -22,3 +22,4 @@ C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Remotion.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\Remotion.Interfaces.dll
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\AVLGenericClass.pdb
 C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\bin\Debug\LinqToExcel.xml
+C:\Users\Admin\source\repos\BSTreeStudent\BSTreeStudent\obj\Debug\BSTreeStudent.csproj.CopyComplete
