@@ -76,13 +76,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AVLGenericClass\AVLGenericClass.csproj">
-      <Project>{bb13473c-b0df-4d75-acc4-e01482b9b873}</Project>
-      <Name>AVLGenericClass</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BSTreeGenericClass\BSTreeGenericClass.csproj">
-      <Project>{67b881dc-227b-4a8d-b2fd-8058989d1676}</Project>
-      <Name>BSTreeGenericClass</Name>
+    <ProjectReference Include="..\Tree\Tree.csproj">
+      <Project>{fd18ca92-b7c7-491d-87fd-4b589616e761}</Project>
+      <Name>Tree</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

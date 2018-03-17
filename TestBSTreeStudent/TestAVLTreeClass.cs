@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AVLGenericClass;
+using Tree;
 
 namespace TestBSTreeStudent
 {
@@ -47,9 +47,15 @@ namespace TestBSTreeStudent
         [Test]
         public void AddTest()
         {
-            tree.AddRange(listStu.ToArray());//tree.Insert()
+            List<Node<Student>> listStudent = new List<Node<Student>>();
+            foreach (var item in listStu)
+            {
+                listStudent.Add(new Node<Student>(item));
+            }
+            tree.AddRange(listStudent.ToArray());
             Student student = null;
             tree.Insert(student);
+            tree.Insert(new Node<Student>(listStu[10]));
             Assert.IsTrue(tree.ToList().Count <= listStu.Count);
             Assert.NotNull(tree.root);
         }
@@ -127,6 +133,23 @@ namespace TestBSTreeStudent
         }
 
         [Test]
+        public void RemovRangeeTest()
+        {
+            tree.AddRange(listStu.ToArray());
+            Assert.IsTrue(tree.ToList().Count <= listStu.Count);
+            Student stu = null;
+            var list = new List<Student>(tree.ToList());
+            List<Node<Student>> listStudent = new List<Node<Student>>();
+            foreach (var item in list)
+            {
+                listStudent.Add(new Node<Student>( item));
+            }
+
+            tree.RemoveRange(listStudent.ToArray());
+        }
+
+
+        [Test]
         public void RemoveMin()
         {
             tree.AddRange(listStu.ToArray());
@@ -142,6 +165,33 @@ namespace TestBSTreeStudent
             tree.AddRange(listStu.ToArray());
             var parent = tree.FindParent(listStu[10]);
             Assert.AreEqual(parent.Item2 > 0 ? parent.Item1.Right.Data : parent.Item1.Left.Data, listStu[10]);
+        }
+
+        [Test]
+        public void TraTraversal()
+        {
+            int bug = 0;
+            try
+            {
+                tree.AddRange(listStu.ToArray());
+                tree.LNR();
+                tree.LRN();
+                tree.NLR();
+                tree.NRL();
+                tree.RLN();
+                tree.RNL();
+            }
+            catch (Exception ex)
+            {
+                if (ex!=null)
+                {
+                    bug++;
+                }
+            }
+            finally
+            {
+                Assert.AreEqual(0, bug);
+            }
         }
     }
 }

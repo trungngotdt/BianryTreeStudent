@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BSTreeGenericClass;
 using System.Text.RegularExpressions;
 using FizzWare.NBuilder;
 using LinqToExcel;
+using Tree;
 
 namespace BSTreeStudent
 {

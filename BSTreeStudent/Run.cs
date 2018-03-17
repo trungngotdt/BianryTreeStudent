@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using BSTreeGenericClass;
 using FizzWare.NBuilder;
 using LinqToExcel;
+using Tree;
 
 namespace BSTreeStudent
 {

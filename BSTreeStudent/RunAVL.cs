@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AVLGenericClass;
 using FizzWare.NBuilder;
 using LinqToExcel;
+using Tree;
 
 namespace BSTreeStudent
 {

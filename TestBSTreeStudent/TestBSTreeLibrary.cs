@@ -1,11 +1,11 @@
 ﻿using System;
 using NUnit.Framework;
 using BSTreeStudent;
-using BSTreeGenericClass;
 using FizzWare.NBuilder;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tree;
 
 namespace TestBSTreeStudent
 {
@@ -47,7 +47,8 @@ namespace TestBSTreeStudent
         public void AddTest()
         {
             tree.AddRange(listStu.ToArray());
-            tree.Insert(null);
+            Node<Student> node = null;
+            tree.Insert(node);
             Assert.IsTrue(tree.ToList().Count <= listStu.Count);
             Assert.NotNull(tree.root);
         }
@@ -106,6 +107,7 @@ namespace TestBSTreeStudent
             var max = tree.GetMax(tree.root.Left).Data;
             Assert.AreEqual(min, (succ as Node<Student>).Data);
             Assert.AreEqual(max, (prec as Node< Student>).Data);
+
         }
 
         [Test]
@@ -125,6 +127,50 @@ namespace TestBSTreeStudent
             }
             
 
+        }
+
+        [Test]
+        public void TraTraversal()
+        {
+            int bug = 0;
+            try
+            {
+                tree.AddRange(listStu.ToArray());
+                tree.LNR();
+                tree.LRN();
+                tree.NLR();
+                tree.NRL();
+                tree.RLN();
+                tree.RNL();
+            }
+            catch (Exception ex)
+            {
+                if (ex != null)
+                {
+                    bug++;
+                }
+            }
+            finally
+            {
+                Assert.AreEqual(0, bug);
+            }
+        }
+
+        [Test]
+        public void RemovRangeeTest()
+        {
+            tree.AddRange(listStu.ToArray());
+            Assert.IsTrue(tree.ToList().Count <= listStu.Count);
+            Student stu = listStu[10];
+            tree.AddRange(new Node<Student>[] {new Node<Student>( stu) });
+            var list = new List<Student>(tree.ToList());
+            List<Node<Student>> listStudent = new List<Node<Student>>();
+            foreach (var item in list)
+            {
+                listStudent.Add(new Node<Student>(item));
+            }
+
+            tree.RemoveRange(listStudent.ToArray());
         }
 
         [Test]
