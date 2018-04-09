@@ -37,7 +37,7 @@ namespace BSTreeStudent
         {
             
             BSTTree<Student> tree = new BSTTree<Student>();
-            Run run = new Run(tree);
+            RunBST run = new RunBST(tree);
             run.MainPanel();
             Console.ReadLine();
 

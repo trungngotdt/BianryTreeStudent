@@ -7,11 +7,9 @@ C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\Mono.Cecil
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\Mono.Cecil.Rocks.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\TestBSTreeStudent.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\TestBSTreeStudent.pdb
-C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\BSTreeGenericClass.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\BSTreeStudent.exe
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\FizzWare.NBuilder.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\nunit.framework.dll
-C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\BSTreeGenericClass.pdb
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\BSTreeStudent.pdb
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\BSTreeStudent.exe.config
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\nunit.framework.xml
@@ -19,9 +17,9 @@ C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\obj\Debug\TestBSTree
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\obj\Debug\TestBSTreeStudent.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\obj\Debug\TestBSTreeStudent.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\obj\Debug\TestBSTreeStudent.pdb
-C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\AVLGenericClass.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\LinqToExcel.dll
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\Remotion.Data.Linq.dll
-C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\AVLGenericClass.pdb
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\LinqToExcel.xml
 C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\obj\Debug\TestBSTreeStudent.csproj.CopyComplete
+C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\Tree.dll
+C:\Users\Admin\source\repos\BSTreeStudent\TestBSTreeStudent\bin\Debug\Tree.pdb

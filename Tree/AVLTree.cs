@@ -621,7 +621,8 @@ namespace Tree
             //x.size = 1 + size(x.left) + size(x.right);
             x.HeightNode = 1 + Math.Max(Height(x.Left), Height(x.Right));
             y.HeightNode = 1 + Math.Max(Height(y.Left), Height(y.Right));
-            return y;
+            return y;
+
         }
 
         private Node<T> RotateRight(Node<T> x)
@@ -631,8 +632,12 @@ namespace Tree
             y.Right = x;
             x.HeightNode = 1 + Math.Max(Height(x.Left), Height(x.Right));
             y.HeightNode = 1 + Math.Max(Height(y.Left), Height(y.Right));
-            return y;
+            return y;
+
         }
+        #endregion
+
+        #region RemoveRange
         public List<Node<T>> RemoveRange(Node<T>[] node)
         {
             var list = new List<Node<T>>();

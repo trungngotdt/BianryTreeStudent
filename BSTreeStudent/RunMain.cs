@@ -47,7 +47,7 @@ namespace BSTreeStudent
                     switch (choice)
                     {
                         case 1:
-                            Run run = new Run();
+                            RunBST run = new RunBST();
                             run.MainPanel();
                             break;
                         case 2:
