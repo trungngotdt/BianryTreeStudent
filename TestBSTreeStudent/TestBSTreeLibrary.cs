@@ -105,7 +105,7 @@ namespace TestBSTreeStudent
             var succ = tree.Successor();
             
             var min = tree.GetMin(tree.root.Right??null)?.Data;
-            var max = tree.GetMax(tree.root.Left??)?.Data;
+            var max = tree.GetMax(tree.root.Left??null)?.Data;
             Assert.AreEqual(min, (succ as Node<Student>)?.Data);
             Assert.AreEqual(max, (prec as Node< Student>)?.Data);
 
