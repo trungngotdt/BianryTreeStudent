@@ -1,14 +1,19 @@
-﻿using FizzWare.NBuilder;
+﻿
+using FizzWare.NBuilder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tree;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace BSTreeStudent
 {
     public class RunMain
     {
+        
         public List<T> GetRandomData<T>(int size)
         {
             var list = Builder<T>.CreateListOfSize(size).Build().ToList();
@@ -34,9 +39,28 @@ namespace BSTreeStudent
 
         }
 
+        private void Locator(bool isBST)
+        {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            if (SimpleIoc.Default.IsRegistered<ITree<Student>>())
+            {
+                SimpleIoc.Default.Unregister<ITree<Student>>();
+            }
+            if (isBST)
+            {
+                SimpleIoc.Default.Register<ITree<Student>, BSTTree<Student>>();
+            }
+            else
+            {                
+                SimpleIoc.Default.Register<ITree<Student>, AVLTree<Student>>();
+            }
+
+            SimpleIoc.Default.Register<RunTree>();
+        }
+
         public void RunMainMenu()
         {
-
+            
             int choice = 0;
             while (choice != 3)
             {
@@ -47,12 +71,14 @@ namespace BSTreeStudent
                     switch (choice)
                     {
                         case 1:
-                            RunBST run = new RunBST();
+                            Locator(true);
+                            var run = ServiceLocator.Current.GetInstance<RunTree>();
                             run.MainPanel();
                             break;
                         case 2:
-                            RunAVL runAVL = new RunAVL();
-                            runAVL.MainPanel();
+                            Locator(false);
+                            var runAvl = ServiceLocator.Current.GetInstance<RunTree>();
+                            runAvl.MainPanel();
                             break;
                         case 3:
                             break;

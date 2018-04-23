@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTreeStudent", "BSTreeStudent\BSTreeStudent.csproj", "{70B99D95-B619-4B77-81D9-A0C03E35306A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeStudent", "BSTreeStudent\TreeStudent.csproj", "{70B99D95-B619-4B77-81D9-A0C03E35306A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBSTreeStudent", "TestBSTreeStudent\TestBSTreeStudent.csproj", "{263E81E8-AC7B-46B8-825A-05403F1DFD66}"
 EndProject
@@ -38,15 +38,15 @@ Global
 		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://ngotrung.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = BSTreeStudent\\BSTreeStudent.csproj
-		SccProjectName1 = BSTreeStudent
-		SccLocalPath1 = BSTreeStudent
-		SccProjectUniqueName2 = TestBSTreeStudent\\TestBSTreeStudent.csproj
-		SccProjectName2 = TestBSTreeStudent
-		SccLocalPath2 = TestBSTreeStudent
-		SccProjectUniqueName3 = Tree\\Tree.csproj
-		SccProjectName3 = Tree
-		SccLocalPath3 = Tree
+		SccProjectUniqueName0 = TestBSTreeStudent\\TestBSTreeStudent.csproj
+		SccProjectName0 = TestBSTreeStudent
+		SccLocalPath0 = TestBSTreeStudent
+		SccProjectUniqueName1 = Tree\\Tree.csproj
+		SccProjectName1 = Tree
+		SccLocalPath1 = Tree
+		SccLocalPath2 = .
+		SccProjectUniqueName3 = BSTreeStudent\\TreeStudent.csproj
+		SccProjectName3 = BSTreeStudent
+		SccLocalPath3 = BSTreeStudent
 	EndGlobalSection
 EndGlobal

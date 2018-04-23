@@ -11,15 +11,7 @@ namespace Tree
     {
         public Node<T> root;
 
-        public AVLTree()
-        {
-            root = null;
-        }
-
-        public AVLTree(Node<T> node)
-        {
-            root = node;
-        }
+       
 
         #region AddRange
         /// <summary>

@@ -164,7 +164,7 @@ namespace TestBSTreeStudent
         {
             tree.AddRange(listStu.ToArray());
             var parent = tree.FindParent(listStu[10]);
-            Assert.AreEqual(parent.Item2 > 0 ? parent.Item1.Right.Data : parent.Item1.Left.Data, listStu[10]);
+            Assert.AreEqual(parent.Item2 > 0&&parent.Item1.Right!=null ? parent.Item1.Right.Data : parent.Item1.Left.Data, listStu[10]);
         }
 
         [Test]

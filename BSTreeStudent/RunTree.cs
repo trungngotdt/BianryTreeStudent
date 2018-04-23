@@ -1,47 +1,23 @@
-﻿using System;
+﻿using FizzWare.NBuilder;
+using LinqToExcel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using FizzWare.NBuilder;
-using LinqToExcel;
 using Tree;
 
 namespace BSTreeStudent
 {
-    public class RunBST
+    public class RunTree
     {
-
-        private List<T> GetRandomData<T>(int size)
-        {
-            var list = Builder<T>.CreateListOfSize(size).Build().ToList();
-
-            return list;
-        }
-
-        private List<Student> GetData(int size)
-        {
-            Random random = new Random();
-            var list = GetRandomData<Student>(size);
-            Parallel.ForEach(list, (item) =>
-            {
-                item.Id = item.Id - random.Next(-size, size) / 2 + random.Next(-size, size) + random.Next(-size, size) * 2;
-                float mark = (random.Next(0, 10) / 1.0f) + 10.0f / (random.Next(0, 99) * 1.0f);
-                item.AvgMark = float.Parse(String.Format("{0:0.00}", mark));
-            });
-            return list;
-        }
-        public RunBST()
-        {
-            tree = new BSTTree<Student>();
-        }
-        public RunBST(BSTTree<Student> tree)
-        {
+        
+        public RunTree(ITree<Student> tree)
+        {            
             this.tree = tree;
         }
-        private BSTTree<Student> tree;
+        private ITree<Student> tree;
 
         private void MainMenu()
         {
@@ -94,10 +70,28 @@ namespace BSTreeStudent
                     continue;
                 }
             }
-
         }
 
         #region Generate Data
+        private List<T> GetRandomData<T>(int size)
+        {
+            var list = Builder<T>.CreateListOfSize(size).Build().ToList();
+
+            return list;
+        }
+
+        private List<Student> GetData(int size)
+        {
+            Random random = new Random();
+            var list = GetRandomData<Student>(size);
+            Parallel.ForEach(list, (item) =>
+            {
+                item.Id = item.Id - random.Next(-size, size) / 2 + random.Next(-size, size) + random.Next(-size, size) * 2;
+                float mark = (random.Next(0, 10) / 1.0f) + 10.0f / (random.Next(0, 99) * 1.0f);
+                item.AvgMark = float.Parse(String.Format("{0:0.00}", mark));
+            });
+            return list;
+        }
         private void GenerateData()
         {
             Console.WriteLine("Enter size of data :");
@@ -244,6 +238,11 @@ namespace BSTreeStudent
             if (int.TryParse(input, out id))
             {
                 var student = tree.FindNode(new Node<Student>(new Student(id, null, DateTime.Now, 0, 0)));
+                if (student==null)
+                {
+                    Console.WriteLine("Empty!");
+                    return;
+                }
                 Console.WriteLine(student.Data.ToString());
                 return;
             }
@@ -280,7 +279,7 @@ namespace BSTreeStudent
         #region Insert
         private void InsertMenu()
         {
-            Console.WriteLine("1/ Insert a student\n2/ Insert a list \n3/ Exit \n Enter your choice :");
+            Console.WriteLine("1/ Insert a student\n2/ Insert array student \n3/ Exit \n Enter your choice :");
         }
 
         private void InsertPanel()
@@ -316,6 +315,7 @@ namespace BSTreeStudent
             }
         }
 
+
         private void InsertAListStudent()
         {
             var listStudent = GetDataFromExcel();
@@ -332,6 +332,7 @@ namespace BSTreeStudent
                 Console.WriteLine(ex.Message);
             }
         }
+
 
         private void InsertAElement()
         {
@@ -379,7 +380,7 @@ namespace BSTreeStudent
 
         private void RemoveMenu()
         {
-            Console.WriteLine("1/ Remove a student\n2/ Remove a list\n3/ Exit \n Enter your choice :");
+            Console.WriteLine("1/ Remove a student\n2/ Remove array student\n3/ Exit \n Enter your choice :");
         }
 
         private void RemovePanel()
@@ -388,7 +389,7 @@ namespace BSTreeStudent
             while (choice != 3)
             {
                 string inp = null;
-                InsertMenu();
+                RemoveMenu();
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out choice))
                 {
@@ -414,6 +415,29 @@ namespace BSTreeStudent
                 }
             }
 
+        }
+
+        public void RemoveAList()
+        {
+            var listStudent = GetDataFromExcel();
+            if (listStudent==null)
+            {
+                Console.WriteLine("Empty!");
+            }
+            foreach (var student in listStudent)
+            {
+                var resultDelete = tree.Remove(new Node<Student>(student));
+                var result = !tree.Contains(new Node<Student>(student));
+                if (!result)
+                {
+                    string mess = tree.FindNode(student) != null ? "Can't remove" : $"Can't find {student.ToString()}";
+                    Console.WriteLine(mess);
+                }
+                else
+                {
+                    Console.WriteLine("Complete");
+                }
+            }
         }
 
         private void RemoveAElement()
@@ -453,34 +477,14 @@ namespace BSTreeStudent
                 return;
             }
             var student = new Student(id, name, date, avgMark, accumulationCredit);
-            var result = tree.Remove(new Node<Student>(student));
-            if (!result)
+            if (!tree.Contains( student))
             {
-                string mess = tree.FindNode(student) != null ? "Can't remove" : $"Can't find {student.ToString()}";
-                Console.WriteLine(mess);
+                Console.WriteLine("Empty!");
+                return;
             }
-            else
-            {
-                Console.WriteLine("Complete");
-            }
-        }
-
-        public void RemoveAList()
-        {
-            var listStudent = GetDataFromExcel();
-            foreach (var student in listStudent)
-            {
-                var result = tree.Remove(new Node<Student>(student));
-                if (!result)
-                {
-                    string mess = tree.FindNode(student) != null ? "Can't remove" : $"Can't find {student.ToString()}";
-                    Console.WriteLine(mess);
-                }
-                else
-                {
-                    Console.WriteLine("Complete");
-                }
-            }
+            var check= tree.Remove(new Node<Student>(student));
+            var mess = check ? "OK" : "Can't delete";
+            Console.WriteLine(mess);
         }
 
         #endregion
@@ -538,7 +542,17 @@ namespace BSTreeStudent
                 string input = Console.ReadLine();
                 while (node == null)
                 {
+                    Console.WriteLine("Out : Exit");
+                    string Out= Console.ReadLine();
+                    if (Out.Equals("Exit"))
+                    {
+                        return;
+                    }
                     node = FindStudent();
+                }
+                if (node==null)
+                {
+                    return;
                 }
                 //Console.WriteLine("Old data of student");
                 //Console.WriteLine(node.Data.ToString());
@@ -584,6 +598,11 @@ namespace BSTreeStudent
             if (int.TryParse(input, out id))
             {
                 var student = tree.FindNode(new Node<Student>(new Student(id, null, DateTime.Now, 0, 0)));
+                if (student==null)
+                {
+                    Console.WriteLine("Empty!");
+                    return null;
+                }
                 Console.WriteLine(student.Data.ToString());
                 return student;
             }
@@ -637,7 +656,7 @@ namespace BSTreeStudent
         #endregion
 
         #region GetDataFromExcel
-        private List<Student> GetDataFromExcel()
+        public List<Student> GetDataFromExcel()
         {
             List<Student> list = new List<Student>();
             Console.WriteLine("Path to excel file :");

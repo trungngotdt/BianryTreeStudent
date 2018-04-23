@@ -11,14 +11,7 @@ namespace Tree
     {
         public Node<T> root;
 
-        public BSTTree()
-        {
-            root = null;
-        }
-        public BSTTree(Node<T> node)
-        {
-            root = node;
-        }
+        
 
         #region AddRange
         /// <summary>
@@ -453,6 +446,28 @@ namespace Tree
         #endregion
 
         #region Remove
+
+        /// <summary>
+        /// Remove a element with minimum value in AVL
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private Node<T> RemoveMin(Node<T> x)
+        {
+            if (x.Left == null)
+                return x.Right;
+            x.Left = RemoveMin(x.Left);
+            return x;
+        }
+
+        /// <summary>
+        /// Remove a minimum value in root
+        /// </summary>
+        /// <returns></returns>
+        public Node<T> RemoveMin()
+        {
+            return root = RemoveMin(root);
+        }
         /// <summary>
         ///  Remove a element in BST - tree root
         /// </summary>
@@ -460,11 +475,13 @@ namespace Tree
         /// <returns></returns>
         public bool Remove(T data)
         {
-            if (data == null)
+            var x = Remove(root, data);
+            root = x;
+            if (this.Contains(data))
             {
                 return false;
             }
-            return Remove(new Node<T>(data));
+            return true;
         }
 
         /// <summary>
@@ -474,96 +491,39 @@ namespace Tree
         /// <returns></returns>
         public bool Remove(Node<T> node)
         {
-            if (!Contains(node))
+            if (node == null)
             {
                 return false;
             }
-            return Remove(node, root);
+            return Remove(node.Data);
         }
 
         /// <summary>
         /// Remove a element in BST
-        /// </summary>
-        /// <param name="item"></param>
+        /// </summary>        
+        /// <param name="x"></param>
+        /// <param name="key"></param>
         /// <returns></returns>
-        private bool Remove(Node<T> item, Node<T> nodeTree)
+        private Node<T> Remove(Node<T> x, T key)
         {
-            Node<T> node = nodeTree;
-            if (item == null)
+            if (x == null) return null;
+            int cmp = key.CompareTo(x.Data);
+            if (cmp < 0)
+                x.Left = Remove(x.Left, key);
+            else if (cmp > 0)
+                x.Right = Remove(x.Right, key);
+            else
             {
-                return false;
-            }
-
-            while (node != null)
-            {
-                if (node.CompareTo(item) == 0)
-                {
-                    if (node.Right == null && node.Left == null)//no child
-                    {
-                        var parent = FindParent(node);
-                        if (parent.Item1 == null)
-                        {
-                            root = null;
-                            return true;
-                        }
-                        parent.Item1.Left = parent.Item2 == -1 ? null : parent.Item1.Left;
-                        parent.Item1.Right = parent.Item2 == 1 ? null : parent.Item1.Right;
-                        return true;
-                    }
-
-                    if (node.Right == null)
-                    {
-                        node.Data = node.Left.Data;
-                        var right = node.Left == null ? null : node.Left.Right;
-                        node.Left = node.Left == null ? null : node.Left.Left;
-                        node.Right = right;
-                        return true;
-                    }
-                    else if (node.Left == null)
-                    {
-                        node.Data = node.Right.Data;
-
-                        var left = node.Right == null ? null : node.Right.Left;
-                        node.Right = node.Right == null ? null : node.Right.Right;
-                        node.Left = left;
-                        return true;
-                    }
-                    else//two child
-                    {
-                        var suc = Successor(node) as Node<T>;// (T)node.Successor();
-                                                             //var nodeFind = FindNode(suc);
-                        var parent = FindParent(suc);
-
-
-                        if (parent.Item1.Data.Equals(item.Data))
-                        {
-                            parent.Item1.Right = suc.Right;
-                            node.Data = suc.Data;
-                            return true;
-                        }
-                        if (suc.Right != null)
-                        {
-                            parent.Item1.Right = suc.Right;
-                        }
-                        else
-                        {
-                            parent.Item1.Left = null;
-                        }
-                        node.Data = suc.Data;
-                        return true;
-                    }
-                }
-                if (node < item)
-                {
-                    node = node.Right;
-                }
-                else
-                {
-                    node = node.Left;
-                }
-            }
-            return false;
-            //throw new NotImplementedException();
+                if (x.Right == null)
+                    return x.Left;
+                if (x.Left == null)
+                    return x.Right;
+                Node<T> t = x;
+                x.Data = GetMin(t.Right).Data;
+                x.Right = RemoveMin(t.Right);
+                x.Left = t.Left;
+            }            
+            return x;
         }
         #endregion
 
@@ -574,54 +534,30 @@ namespace Tree
         /// <param name="item"></param>
         public void Insert(Node<T> item)
         {
-            Node<T> temp = root;
             if (item == null)
             {
                 return;
             }
-            if (root == null)
-            {
-                root = new Node<T>(item.Data, 1);
-                return;
-            }
-            //Node<T> temp = root;
-            while (item != null)
-            {
-                if (temp.Data.Equals(item.Data))
-                {
-                    break;
-                }
+            root = Insert(root, item.Data);
+        }
 
-                if (item < temp)
-                {
-                    if (temp.Left != null)
-                    {
-
-                        temp = temp.Left;
-                    }
-                    else
-                    {
-                        temp.Left = item;
-
-                        break;
-                    }
-                }
-                else if (item > temp)
-                {
-                    if (temp.Right != null)
-                    {
-
-                        temp = temp.Right;
-                    }
-                    else
-                    {
-                        temp.Right = item;
-
-                        break;
-                    }
-                }
-                //item.Size = 1 + Size(item.Left) + Size(item.Right);
-            }
+        /// <summary>
+        /// Adds an object to the BST
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="x"></param>
+        private Node<T> Insert(Node<T> x, T key)
+        {
+            if (x == null)
+                return new Node<T>(key, 0);
+            int cmp = key.CompareTo(x.Data);
+            if (cmp < 0)
+                x.Left = Insert(x.Left, key);
+            else if (cmp > 0)
+                x.Right = Insert(x.Right, key);
+            else
+                x.Data = key;
+            return x;
         }
 
         /// <summary>

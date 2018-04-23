@@ -57,12 +57,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BSTreeStudent\BSTreeStudent.csproj">
+    <ProjectReference Include="..\BSTreeStudent\TreeStudent.csproj">
       <Project>{70b99d95-b619-4b77-81d9-a0c03e35306a}</Project>
-      <Name>BSTreeStudent</Name>
+      <Name>TreeStudent</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tree\Tree.csproj">
       <Project>{fd18ca92-b7c7-491d-87fd-4b589616e761}</Project>
